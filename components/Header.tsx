@@ -1,5 +1,4 @@
 "use client";
-
 import React, {useState} from 'react';
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +17,7 @@ const SORT_BY_MAP = {
 
 const Header = ({}) => {
   const [pages, setPages] = useState("");
-  const [sortBy, setSortBy] = useState("");
+  const [sortBy, setSortBy] = useState("r");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const router = useRouter();
