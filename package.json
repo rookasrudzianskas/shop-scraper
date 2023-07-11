@@ -15,10 +15,11 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
-    "next": "13.4.9",
+    "next": "canary",
     "postcss": "8.4.25",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "experimental",
+    "react-avatar": "^5.0.3",
+    "react-dom": "experimental",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6"
   }

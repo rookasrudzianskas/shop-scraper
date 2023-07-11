@@ -5,10 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import {MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 import SearchButton from "@/components/SearchButton";
-import {experimental_useFormStatus as useFormStatus} from "react-dom";
+import {SearchSelect, SearchSelectItem, Select, SelectItem} from "@tremor/react";
+import Avatar from "react-avatar";
+
+const SORT_BY_MAP = {
+  r: 'Default',
+  rv: 'By Review',
+  p: 'By Price, (low to high)',
+  pd: 'By Price, (high to low)',
+}
 
 const Header = ({}) => {
-  const {pending} = useFormStatus();
 
   return (
     <header>
@@ -31,8 +38,52 @@ const Header = ({}) => {
               </div>
               <SearchButton />
             </div>
+
+            <div>
+              <SearchSelect
+                className="min-w-4"
+                placeholder="# of pages"
+              >
+                {[...Array(100)].map((_, i) => (
+                  <SearchSelectItem key={i} value={(i + 1).toString()}>
+                    {(i + 1).toString()} pages
+                  </SearchSelectItem>
+                ))}
+              </SearchSelect>
+
+              <Select className="min-w-4" placeholder="Sort">
+                {Object.entries(SORT_BY_MAP).map(([key, value]) => (
+                  <SelectItem key={key} value={key}>
+                    {value}
+                  </SelectItem>
+                ))}
+              </Select>
+
+              <Select className="min-w-4" placeholder={'Min Price...'}>
+                {["", "100", "250", "500", "750", "900", "1000+"].map((_, i) => (
+                  <SelectItem key={i} value={(_).toString()}>
+                    {i === 0 ? 'No Minimum': `$${_.toString()}`}
+                  </SelectItem>
+                ))}
+              </Select>
+
+              <SearchSelect
+                className="min-w-4"
+                placeholder="Max Price..."
+              >
+                {["", "100", "250", "500", "750", "900", "1000+"].map((_, i) => (
+                  <SelectItem key={i} value={(_).toString()}>
+                    {i === 0 ? 'No Max': `$${_.toString()}`}
+                  </SelectItem>
+                ))}
+              </SearchSelect>
+
+            </div>
           </form>
         </div>
+      <div className="hidden lg:flex flex-1 justify-end">
+        <Avatar name="Rokas Rudzianskas" round size="50" />
+      </div>
     </header>
   );
 };
