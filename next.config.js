@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  domains: [
-    'images.unsplash.com', 'links.papareact.com'
-  ]
+  images: {
+    domains: [
+      'images.unsplash.com', 'links.papareact.com', 'upload.wikimedia.org'
+    ]
+  }
 }
 
 module.exports = nextConfig

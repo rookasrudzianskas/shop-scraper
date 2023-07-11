@@ -1,8 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import React from "react";
+import Header from '../components/Header';
 
 export const metadata: Metadata = {
   title: 'Google Shop Scraper',
@@ -16,8 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="">
         <main>
+          <Header />
           {children}
         </main>
       </body>
