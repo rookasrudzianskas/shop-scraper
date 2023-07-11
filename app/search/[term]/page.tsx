@@ -23,7 +23,6 @@ const SearchPage = async ({searchParams, params: {term}}: Props) => {
   });
 
   const results = await response.json() as PageResult[];
-  console.log('Data => ???', results);
 
   return (
     <div>
