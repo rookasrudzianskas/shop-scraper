@@ -7,6 +7,7 @@ import {MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 import SearchButton from "@/components/SearchButton";
 import {SearchSelect, SearchSelectItem, Select, SelectItem} from "@tremor/react";
 import Avatar from "react-avatar";
+import {useRouter} from "next/navigation";
 
 const SORT_BY_MAP = {
   r: 'Default',
@@ -20,6 +21,7 @@ const Header = ({}) => {
   const [sortBy, setSortBy] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const router = useRouter();
 
 
   return (
@@ -35,7 +37,16 @@ const Header = ({}) => {
         />
       </Link>
         <div className="w-full md:max-w-2xl">
-          <form>
+          <form action={formData => {
+            const searchTerm = formData.get('searchTerm');
+            if(!formData.get('searchTerm')) return;
+            const params = new URLSearchParams();
+            if(pages) params.set('pages', pages.toString());
+            // if(sortBy) params.set('sortBy', sortBy.toString());
+            // if(minPrice) params.set('minPrice', minPrice.toString());
+            // if(maxPrice) params.set('maxPrice', maxPrice.toString());
+            router.push(`/search/${searchTerm}?${params.toString()}`);
+          }}>
             <div className="flex items-center gap-2 w-full px-4">
               <div className="flex items-center space-x-2 bg-white shadow-xl rounded-full border-0 px-6 py-4 md:max-w-5xl flex-1">
                 <MagnifyingGlassIcon className="w-5 h-5 text-gray-400" />
