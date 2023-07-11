@@ -4,6 +4,8 @@ import {PageResult, SearchParams} from "@/typings";
 import {getFetchUrl} from "@/lib/getFetchUrl";
 import ResultsList from "@/components/ResultsList";
 
+export const revalidate = 60;
+
 type Props = {
   searchParams: SearchParams;
   params: {
