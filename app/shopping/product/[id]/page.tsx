@@ -62,7 +62,123 @@ const ProductPage = async ({params: {id}}: Props) => {
             ))}
           </div>
         </div>
+
+        <div className="pt-10 flex-1">
+          <div>
+            {productData.content.pricing?.online[0].details && (
+              <>
+                <h3 className="font-bold text-2xl">Product Details</h3>
+                <p className="text-lg">
+                  {productData.content.pricing.online[0].price_total}{" "}
+                  {productData.content.pricing.online[0].currency}
+                </p>
+
+                <div className="flex space-x-4">
+                  <p className="text-sm text-gray-600">
+                    ({productData.content.pricing.online[0].price}{" "}
+                    {productData.content.pricing.online[0].currency} + {" "}
+                    {productData.content.pricing.online[0].price_tax}{" "}
+                    {productData.content.pricing.online[0].currency} tax)
+                  </p>
+
+                  {productData.content.pricing.online.length > 1 && (
+                    <p className="text-sm text-blue-600">
+                      + {productData.content.pricing.online.length -1} more prices
+                    </p>
+                  )}
+                </div>
+
+                <p className="text-sm text-gray-600 mt-5">
+                  {productData.content.pricing.online[0].details}
+                </p>
+              </>
+            )}
+
+            <hr className="my-5"/>
+
+            <p>{productData.content.description}</p>
+
+            {productData.content.highlights && (
+              <div className="mt-5 space-y-2">
+                <h3 className="font-bold text-2xl">Product Highlights</h3>
+                <hr/>
+                <ul className="space-y-2">
+                  {productData.content.highlights.map((highlight) => (
+                    <li key={highlight} className="list-disc">{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
       </section>
+
+      <section>
+        <hr className="my-10"/>
+        {productData.content.reviews ? (
+          <>
+            <h3 className="font-bold text-2xl">
+              Reviews ({productData.content.reviews.rating})
+            </h3>
+
+            <h4 className="text-lg italic">Top Review</h4>
+
+            {productData.content.reviews.top_review && (
+              <div className="border p-5 rounded-lg mt-2">
+                <div className="flex space-x-1">
+                  <p className="font-bold capitalize">
+                    {productData.content.reviews.top_review.author} says:
+                  </p>
+
+                  <h5>{productData.content.reviews.top_review.title}</h5>
+                </div>
+                <div className="flex space-x-1 mb-2">
+                  {[
+                    ...Array.from({
+                      length: Math.round(
+                        productData.content.reviews.top_review.rating
+                      ),
+                    }),
+                  ].map((_, i) => (
+                    <StarIcon key={i} className="h-5 w-5 text-yellow-500" />
+                  ))}
+                </div>
+
+                <p>"{productData.content.reviews.top_review.text}"</p>
+              </div>
+            )}
+          </>
+        ) : (
+          <div>
+            <h3 className="font-bold text-2xl">Reviews</h3>
+            <h4 className="text-lg italic">No review's yet</h4>
+          </div>
+        )}
+      </section>
+
+      {productData.content.specifications && (
+        <section>
+          <hr className="my-10" />
+          <h3 className="font-bold text-2xl">Specifications</h3>
+
+          <div className="flex space-x-5 flex-wrap">
+            {productData.content.specifications.map((specification) => (
+              <div className="" key={specification.section_title}>
+                <h4 className="font-bold my-2 text-xl">
+                  {specification.section_title}
+                </h4>
+
+                {specification.items.map((items) => (
+                  <div key={items.title} className="text-sm">
+                    <h5 className="font-bold">{items.title}</h5>
+                    <p>{items.value}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 };
