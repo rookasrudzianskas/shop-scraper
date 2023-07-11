@@ -42,9 +42,9 @@ const Header = ({}) => {
             if(!formData.get('searchTerm')) return;
             const params = new URLSearchParams();
             if(pages) params.set('pages', pages.toString());
-            // if(sortBy) params.set('sortBy', sortBy.toString());
-            // if(minPrice) params.set('minPrice', minPrice.toString());
-            // if(maxPrice) params.set('maxPrice', maxPrice.toString());
+            if(sortBy) params.set('sort_by', sortBy.toString());
+            if(minPrice) params.set('min_price', minPrice.toString());
+            if(maxPrice) params.set('max_price', maxPrice.toString());
             router.push(`/search/${searchTerm}?${params.toString()}`);
           }}>
             <div className="flex items-center gap-2 w-full px-4">
