@@ -11,7 +11,7 @@ const ResultsList = ({results, term}: Props) => {
   return (
     <div className="flex md:px-5">
       {/* sidebar */}
-      <div>
+      <div className="w-36 md:w-64">
         {/* for each page */}
         {results.map((pageResult) => (
           <div key={pageResult.job_id} className="space-y-2">
