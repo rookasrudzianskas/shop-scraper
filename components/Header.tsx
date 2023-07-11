@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, {useState} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import {MagnifyingGlassIcon} from "@heroicons/react/24/solid";
@@ -16,9 +16,14 @@ const SORT_BY_MAP = {
 }
 
 const Header = ({}) => {
+  const [pages, setPages] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
 
   return (
-    <header>
+    <header className="flex flex-col items-center md:flex-row md:items-start md:space-x-6 px-2 py-10 pb-5 md:p-10 md:pb-5">
       <Link href={'/'}>
         <Image
           // src="https://links.papareact.com/2O8"
@@ -39,8 +44,9 @@ const Header = ({}) => {
               <SearchButton />
             </div>
 
-            <div>
+            <div className="grid grid-cols-2 gap-2 p-4 md:grid-cols-4 max-w-lg md:max-w-none mx-auto items-center">
               <SearchSelect
+                onValueChange={value => setPages(value)}
                 className="min-w-4"
                 placeholder="# of pages"
               >
@@ -51,7 +57,9 @@ const Header = ({}) => {
                 ))}
               </SearchSelect>
 
-              <Select className="min-w-4" placeholder="Sort">
+              <Select
+                onValueChange={value => setSortBy(value)}
+                className="min-w-4" placeholder="Sort">
                 {Object.entries(SORT_BY_MAP).map(([key, value]) => (
                   <SelectItem key={key} value={key}>
                     {value}
@@ -59,7 +67,9 @@ const Header = ({}) => {
                 ))}
               </Select>
 
-              <Select className="min-w-4" placeholder={'Min Price...'}>
+              <Select
+                onValueChange={value => setMinPrice(value)}
+                className="min-w-4" placeholder={'Min Price...'}>
                 {["", "100", "250", "500", "750", "900", "1000+"].map((_, i) => (
                   <SelectItem key={i} value={(_).toString()}>
                     {i === 0 ? 'No Minimum': `$${_.toString()}`}
@@ -67,7 +77,8 @@ const Header = ({}) => {
                 ))}
               </Select>
 
-              <SearchSelect
+              <Select
+                onValueChange={value => setMaxPrice(value)}
                 className="min-w-4"
                 placeholder="Max Price..."
               >
@@ -76,7 +87,7 @@ const Header = ({}) => {
                     {i === 0 ? 'No Max': `$${_.toString()}`}
                   </SelectItem>
                 ))}
-              </SearchSelect>
+              </Select>
 
             </div>
           </form>
