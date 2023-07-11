@@ -26,4 +26,12 @@ export async function POST(request: Request) {
     }
   })
 
+  const response = await fetch('https://realtime.oxylabs.io/v1/queries', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + Buffer.from(`${process.env.OXYLABS_USERNAME}:${process.env.Rokas2020}`).toString('base64'),
+    }
+  });
+
 }
