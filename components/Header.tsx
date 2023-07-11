@@ -103,7 +103,7 @@ const Header = ({}) => {
           </form>
         </div>
       <div className="hidden lg:flex flex-1 justify-end">
-        <Avatar name="Rokas Rudzianskas" round size="50" />
+        {/*<Avatar name="Rokas Rudzianskas" round size="50" />*/}
       </div>
     </header>
   );

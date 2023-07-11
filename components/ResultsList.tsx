@@ -20,7 +20,7 @@ const ResultsList = ({results, term}: Props) => {
                 <p className="font-bold">{filter.name}</p>
                 <div className="flex flex-col">
                   {filter.values.map((value) => (
-                    <Link prefetch={false} href={`https://www.google.com${value.url}`}>
+                    <Link key={value.value} prefetch={false} href={`https://www.google.com${value.url}`}>
                       {value.value}
                     </Link>
                   ))}
