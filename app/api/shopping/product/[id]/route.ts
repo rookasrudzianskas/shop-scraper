@@ -19,6 +19,21 @@ export async function GET(
       'Authorization': `Basic ${Buffer.from(process.env.OXYLABS_USERNAME + ":" + process.env.OXYLABS_PASSWORD).toString("base64")}`,
     },
     cache: 'no-store',
-
+    body: JSON.stringify({
+      source: 'google_shopping_product',
+      domain: 'com',
+      query: id,
+      parse: true,
+    })
   });
+
+  const data = await response.json();
+
+  if(data.results.length === 0) {
+    return NextResponse.next(
+      new Response("No results", {status: 404})
+    )
+  }
+
+  const productData: ProductData = data.results[0];
 }
