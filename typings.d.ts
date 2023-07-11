@@ -36,7 +36,7 @@ type Results = {
 
 type Filter = {
   name: string;
-  value: Value[];
+  values: Value[];
 }
 
 type Value = {
