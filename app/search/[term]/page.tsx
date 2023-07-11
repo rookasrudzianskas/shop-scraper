@@ -2,6 +2,7 @@ import React from 'react';
 import {redirect} from "next/navigation";
 import {PageResult, SearchParams} from "@/typings";
 import {getFetchUrl} from "@/lib/getFetchUrl";
+import ResultsList from "@/components/ResultsList";
 
 type Props = {
   searchParams: SearchParams;
@@ -24,7 +25,7 @@ const SearchPage = async ({searchParams, params: {term}}: Props) => {
 
   return (
     <div>
-
+      <ResultsList results={results} term={term} />
     </div>
   );
 };
