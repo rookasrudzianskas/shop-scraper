@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + Buffer.from(`${process.env.OXYLABS_USERNAME}:${process.env.Rokas2020}`).toString('base64'),
+      'Authorization': `Basic ${Buffer.from(process.env.OXYLABS_USERNAME + ":" + process.env.OXYLABS_PASSWORD).toString("base64")}`,
     },
     cache: 'no-store',
     body: JSON.stringify({
