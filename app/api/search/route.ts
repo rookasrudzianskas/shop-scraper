@@ -31,7 +31,23 @@ export async function POST(request: Request) {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Basic ' + Buffer.from(`${process.env.OXYLABS_USERNAME}:${process.env.Rokas2020}`).toString('base64'),
-    }
+    },
+    cache: 'no-store',
+    body: JSON.stringify({
+      source: 'google_shopping_search',
+      domain: 'com',
+      query: searchTerm,
+      pages: Number(pages) || 1,
+      parse: true,
+      context: filters,
+    })
   });
+
+  const data = await response.json();
+  console.log('Data =>', data);
+
+  const pageResults: PageResult[] = data.results
+
+  return NextResponse.json(pageResults);
 
 }
