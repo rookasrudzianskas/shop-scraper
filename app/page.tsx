@@ -1,4 +1,5 @@
-import Image from 'next/image'
+import React from "react";
+import Link from "next/link";
 
 const searches = [
   {
@@ -43,9 +44,9 @@ export default function Home() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-center items-center gap-5 mt-5">
         {searches.map((search, i) => (
-          <a prefetch={false} key={search.id} className={`${search.color} w-full h-36 hover:opacity-50 text-white font-bold py-2 px-4 rounded`} href={search.url}>
+          <Link prefetch={false} key={search.id} className={`${search.color} w-full h-36 hover:opacity-50 text-white font-bold py-2 px-4 rounded`} href={search.url}>
             {search.term}
-          </a>
+          </Link>
         ))}
       </div>
     </main>
