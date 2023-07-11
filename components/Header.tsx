@@ -1,10 +1,15 @@
+"use client";
+
 import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import {MagnifyingGlassIcon} from "@heroicons/react/24/solid";
 import SearchButton from "@/components/SearchButton";
+import {experimental_useFormStatus as useFormStatus} from "react-dom";
 
 const Header = ({}) => {
+  const {pending} = useFormStatus();
+
   return (
     <header>
       <Link href={'/'}>
